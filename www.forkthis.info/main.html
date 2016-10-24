@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>forkThis!</title>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+<link href="fork.png" rel="shortcut icon">
+</head>
+<body>
+	<div class="navbar">
+		<span class="menuButton"></span>
+		<span class="logo">forkThis!</span>
+	</div>
+	<div class="main">
+		<div class="workspace workspace-Left">
+			<div class="codingArea" contenteditable="true">function main(){<br>console.log("Hello World!");<br>}</div>
+			<div class="buttonPanel">
+				<button class="run btn btn btn-primary">Run</button>
+				<button class="clearConsole btn btn btn-secondary">Clear</button>
+				<button class="stop btn btn btn-danger">Terminate</button>
+			</div>
+			<div class="console" readonly=true></div>
+		</div>
+		<div class="controlPanel">
+			<button class="makeInstance btn btn-primary">Make Instance</button>
+			<button class="mergeInstance btn btn-secondary" style="display:none;">Merge Instance</button>
+			<button class="deleteInstance btn btn-danger" style="display:none;">Delete Instance</button>
+		</div>
+		<div class="workspace workspace-right" style="display:none;">
+			<div class="codingArea" contenteditable="true"></div>
+			<div class="buttonPanel">
+				<button class="run btn btn btn-primary">Run</button>
+				<button class="clearConsole btn btn btn-secondary">Clear</button>
+				<button class="stop btn btn btn-danger">Terminate</button>
+			</div>
+			<div class="console" readonly=true></div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>

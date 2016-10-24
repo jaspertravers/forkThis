@@ -1,0 +1,10 @@
+{
+    "indent": 2,
+    "maxerr": 20,
+    "node": true,
+    "onevar": true,
+    "plusplus": true,
+    "strict": "global",
+    "unused": "vars",
+    "white": true
+}
