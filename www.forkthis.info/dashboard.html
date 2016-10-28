@@ -1,0 +1,121 @@
+<html>
+
+<head>
+	<title>forkThis! Dashboard</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/index.js"></script>
+	<link href="fork.png" rel="shortcut icon">
+	<style>
+		.tabs .btn {
+			width: 32%;
+		}
+
+		table {
+			width: 100%;
+			background-color: white;
+			max-height: 300px;
+			overflow-y: auto;
+		}
+
+		td {
+			width: 33%;
+			border: 1px solid #aaa;
+			padding: 1vh 2vh;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+		<span class="menuButton"></span>
+		<span class="logo">forkThis!</span>
+	</div>
+	<div class="main">
+		<div class="container" style="text-align:center;margin-top:10vh;">
+			<input type="text" class="form-control" placeholder="Session Id" style="margin-bottom:2vh;" />
+			<div>
+				<a href="main.html">
+					<div class="btn btn-primary" style="width:200px;margin-bottom:3vh;">Join Session</div>
+				</a>
+			</div>
+			<div style="background-color:#e7e7e7;padding:1vh;">
+				<div class="tabs">
+					<div class="btn btn-default" target="recent">Recent Courses</div>
+					<div class="btn btn-primary" target="hosted">Hosted Courses</div>
+					<div class="btn btn-default" target="saved">Saved Instances</div>
+				</div>
+				<script>
+					$(".tabs .btn").on("click", function() {
+						$(".tabs .btn").removeClass("btn-primary").addClass("btn-default");
+						$(".tables table").hide();
+						$(this).addClass("btn-primary");
+						$("#" + $(this).attr("target")).show();
+					});
+				</script>
+				<div class="tables">
+					<table id="recent" style="display:none;">
+						<tr>
+							<td>COGS 120</td>
+							<td>1 saved instance</td>
+							<td>
+								<a href="main.html">
+									<div class="btn btn-primary">Join Session</div>
+								</a>
+							</td>
+						</tr>
+					</table>
+
+					<table id="hosted">
+						<tr>
+							<td>COGS 120</td>
+							<td>Total Views: 20</td>
+							<td>
+								<a href="main.html">
+									<div class="btn btn-primary">Join Session</div>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>CSE 170</td>
+							<td>Total Views: 30</td>
+							<td>
+								<a href="main.html">
+									<div class="btn btn-primary">Join Session</div>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>CSE 110</td>
+							<td>Total Views: 100</td>
+							<td>
+								<a href="main.html">
+									<div class="btn btn-primary">Join Session</div>
+								</a>
+							</td>
+						</tr>
+					</table>
+
+					<table id="saved" style="display:none;">
+						<tr>
+							<td>COGS 120</td>
+							<td>10/26/2016</td>
+							<td>
+								<a href="main.html">
+									<div class="btn btn-primary">See Session</div>
+								</a>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+			<a href="new.html">Host New Session</a>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+
+</html>

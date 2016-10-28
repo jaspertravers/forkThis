@@ -1,33 +1,54 @@
 <html>
+
 <head>
-<title>forkThis! SignIn</title>
-<link href="css/bootstrap.min.css" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/index.js"></script>
-<link href="fork.png" rel="shortcut icon">
+	<title>forkThis!</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/index.js"></script>
+	<link href="fork.png" rel="shortcut icon">
+	<style>
+		span.btn.loginButton {
+			width: auto;
+			position: absolute;
+			right: 1vh;
+			margin: 0;
+			top: 1vh;
+		}
+	</style>
 </head>
+
 <body>
 	<div class="navbar">
 		<span class="menuButton"></span>
 		<span class="logo">forkThis!</span>
+		<a href="signin.html"><span class="btn btn-success loginButton">Login or Signup</span></a>
 	</div>
 	<div class="main">
-    <div class="container" style="text-align:center;margin-top:15vh;">
-      <div class="row" style="margin-bottom:5vh;">
-        <h1>Sign In</h1>
-      </div>
-      <div class="row">
-        <form style="width: 300px;display:inline-block;">
-        <input type="email" class="form-control" placeholder="Email" style="margin-bottom:5vh;"/>
-        <input type="password" class="form-control" placeholder="Password" style="margin-bottom:5vh;"/>
-        <div><a href="setup.html"><div class="btn btn-primary">Sign In</div></a></div>
-        <div><a href="signup.html"><div class="btn btn-primary">Sign Up</div></a></div>
-      </form>
-      </div>
-    </div>
+		<div class="container" style="text-align:center;margin-top:10vh;">
+			<div class="row" style="margin-bottom:5vh;">
+				<h1>Join a Session or Create a New Session</h1>
+			</div>
+			<div class="row">
+				<form style="width: 300px;display:inline-block;">
+					<input type="text" class="form-control" placeholder="Session Id" style="margin-bottom:5vh;" />
+					<div>
+						<a href="main.html">
+							<div class="btn btn-primary">Join Session</div>
+						</a>
+					</div>
+					<div>or</div>
+					<div>
+						<a href="new.html">
+							<div class="btn btn-primary">Create Session</div>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	<div class="footer"></div>
 </body>
+
 </html>
