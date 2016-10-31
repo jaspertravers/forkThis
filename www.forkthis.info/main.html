@@ -1,53 +1,90 @@
 <html>
+
 <head>
-<title>forkThis!</title>
-<link href="css/bootstrap.min.css" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/index.js"></script>
-<link href="fork.png" rel="shortcut icon">
-<style>
-	span.btn.dashboardButton {
-		width: auto;
-		position: absolute;
-		right: 1vh;
-		margin: 0;
-		top: 1vh;
-	}
-</style>
+	<title>forkThis!</title>
+	<link href="fork.png" rel="shortcut icon">
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+	<link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+	<link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+	<link href="dist/css/sb-admin-2.css" rel="stylesheet">
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+	<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+	<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+	<script src="dist/js/sb-admin-2.js"></script>
+	<script src="js/templatize.js"></script>
+	<script src="js/api.js"></script>
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/index.js"></script>
 </head>
+
 <body>
-	<div class="navbar">
-		<span class="menuButton"></span>
-		<span class="logo">forkThis!</span>
-		<a href="dashboard.html"><span class="btn btn-primary dashboardButton">Dashboard</span></a>
-	</div>
-	<div class="main">
-		<div class="workspace workspace-Left">
-			<div class="codingArea" contenteditable="true">function main(){<br>console.log("Hello World!");<br>}</div>
-			<div class="buttonPanel">
-				<button class="run btn btn btn-primary">Run</button>
-				<button class="clearConsole btn btn btn-secondary">Clear</button>
-				<button class="stop btn btn btn-danger">Terminate</button>
+	<div id="wrapper">
+		<fork template="navbar"></fork>
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header"></h1>
+				</div>
 			</div>
-			<div class="console" readonly=true></div>
-		</div>
-		<div class="controlPanel">
-			<button class="makeInstance btn btn-primary">Make Instance</button>
-			<button class="mergeInstance btn btn-secondary" style="display:none;">Merge Instance</button>
-			<button class="deleteInstance btn btn-danger" style="display:none;">Delete Instance</button>
-		</div>
-		<div class="workspace workspace-right" style="display:none;">
-			<div class="codingArea" contenteditable="true"></div>
-			<div class="buttonPanel">
-				<button class="run btn btn btn-primary">Run</button>
-				<button class="clearConsole btn btn btn-secondary">Clear</button>
-				<button class="stop btn btn btn-danger">Terminate</button>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-code" aria-hidden="true"></i> Code
+						</div>
+						<div class="panel-body">
+							<div class="workspace workspace-Left">
+								<div class="codingArea" contenteditable="true">function main(){<br>console.log("Hello World!");<br>}</div>
+								<div class="buttonPanel">
+									<button class="run btn btn btn-primary">Run</button>
+									<button class="clearConsole btn btn btn-secondary">Clear</button>
+									<button class="stop btn btn btn-danger">Terminate</button>
+								</div>
+								<div class="console" readonly=true></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-tasks" aria-hidden="true"></i> Control Panel
+						</div>
+						<div class="panel-body">
+							<div class="controlPanel">
+								<button class="makeInstance btn btn-primary">Make Instance</button>
+								<button class="mergeInstance btn btn-secondary" style="display:none;">Merge Instance</button>
+								<button class="deleteInstance btn btn-danger" style="display:none;">Delete Instance</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<i class="fa fa-code-fork" aria-hidden="true"></i> Instance
+						</div>
+						<div class="panel-body">
+							<div class="workspace workspace-right" style="display:none;">
+								<div class="codingArea" contenteditable="true"></div>
+								<div class="buttonPanel">
+									<button class="run btn btn btn-primary">Run</button>
+									<button class="clearConsole btn btn btn-secondary">Clear</button>
+									<button class="stop btn btn btn-danger">Terminate</button>
+								</div>
+								<div class="console" readonly=true></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="console" readonly=true></div>
 		</div>
 	</div>
-	<div class="footer"></div>
 </body>
+
 </html>

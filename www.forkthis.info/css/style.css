@@ -1,46 +1,8 @@
-body{
-	margin: 0;
-	left: 0;
-	top: 0;
-	font-family: 'Courier New';
-}
 textarea{
 	font-size: 2.5vh;
 }
-.btn{
-	font-size: 3.5vh;
-	margin: 1vh 1vh 1vh 0;
-	width: 100%;
-}
-.navbar{
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 10vh;
-	background-color: #545454;
-	z-index: 1000;
-	text-align: center;
-	border-radius: 0;
-}
-.navbar .logo {
-    color: white;
-    font-size: 5vh;
-		position: relative;
-		display: inline-block;
-		margin-top: 1vh;
-}
-.main{
-	position: absolute;
-	left: 0;
-	top: 10vh;
-	width: 100%;
-}
-.workspace{
-	position: relative;
-	float: left;
-	width: calc(50% - 20vh - 2vh - 2vh);
-	padding: 2vh;
+#page-wrapper{
+	margin: 0 !important;
 }
 .workspace .codingArea, .console{
 	position: relative;
@@ -49,34 +11,22 @@ textarea{
 	overflow-y: auto;
 }
 .workspace .codingArea{
-	height: calc(50vh - 4px);
+	height: 250px;
 	border: 1px solid #545454;
-	padding: 1vh;
+	padding: 10px;
+	font-family: 'Courier New';
 }
 .workspace .console{
-	height: 25vh;
+	height: 150px;
 	background-color: black;
 	color: white;
 	border: 1px solid #545454;
-	padding: 1vh;
+	padding: 10px;
 }
 .workspace .buttonPanel{
 	width: 100%;
 	float: left;
-}
-.controlPanel{
-	position: relative;
-	float: left;
-	width: 40vh;
-	height: 80vh;
-}
-.buttonPanel .btn {
-    width: auto;
-}
-.controlPanel .btn {
-    display: block;
-    margin: 2vh 0;
-    width: 100%;
+	margin: 10px 0;
 }
 /* Phone in portrait */
 @media(max-width:760px) {

@@ -2,49 +2,74 @@
 
 <head>
     <title>forkThis! - New Session</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
     <link href="fork.png" rel="shortcut icon">
-    <style>
-        textarea {
-            width: 100%;
-            margin-bottom: 2vh;
-            height: 150px;
-            padding: 1vh;
-        }
-    </style>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="js/templatize.js"></script>
+    <script src="js/api.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="navbar">
-        <span class="menuButton"></span>
-        <span class="logo">forkThis!</span>
-    </div>
-    <div class="main">
-        <div class="container" style="text-align:center;margin-top:10vh;">
-            <div class="row" style="margin-bottom:5vh;">
-                <h1>Host a New Session</h1>
-            </div>
-            <div class="row">
-                <form style="width: 300px;display:inline-block;">
-                    <input type="text" class="form-control" placeholder="Session Name" style="margin-bottom:5vh;" />
-                    <textarea>Enter session description</textarea>
-                    <div>
-                        <a href="main.html">
-                            <div class="btn btn-primary" style="width:auto;">Create Session</div>
-                        </a>
-                        <a href="dashboard.html">
-                            <div class="btn btn-default" style="width:auto;">Main Menu</div>
-                        </a>
+    <div id="wrapper">
+        <fork template="navbar"></fork>
+        <div id="page-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Host a New Session</h1>
                     </div>
-                </form>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-plus-square fa-fw"></i> Enter New Session Information
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>Enter a Unique Session Id Name</label>
+                                    <input class="form-control" placeholder="Session Id" id="sessionId">
+                                </div>
+                                <div class="form-group">
+                                    <label>Session Description (optional)</label>
+                                    <textarea class="form-control" id="sessionDescription"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Upload Starter Code (optional)</label>
+                                    <input type="file" accept=".js">
+                                </div>
+                                <button class="btn btn-primary" id="createSession">Create Session</button>
+                                <script>
+                                    $("#createSession").on("click", function() {
+                                        FORK_THIS_API.Session.add({
+                                            sessionId: $("#sessionId").val(),
+                                            description: $("#sessionDescription").val(),
+                                            ownerId: "guest"
+                                        }, function() {
+                                          window.location.href = "main.html";
+                                        });
+                                    });
+                                </script>
+                                <a href="dashboard.html"><button class="btn btn-default">Cancel</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="footer"></div>
 </body>
 
 </html>

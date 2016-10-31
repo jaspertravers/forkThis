@@ -2,53 +2,72 @@
 
 <head>
 	<title>forkThis!</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/index.js"></script>
 	<link href="fork.png" rel="shortcut icon">
-	<style>
-		span.btn.loginButton {
-			width: auto;
-			position: absolute;
-			right: 1vh;
-			margin: 0;
-			top: 1vh;
-		}
-	</style>
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+	<link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+	<link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+	<link href="dist/css/sb-admin-2.css" rel="stylesheet">
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+	<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+	<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+	<script src="dist/js/sb-admin-2.js"></script>
+	<script src="js/templatize.js"></script>
+	<script src="js/api.js"></script>
+	<link href="css/style.css" rel="stylesheet" />
 </head>
 
 <body>
-	<div class="navbar">
-		<span class="menuButton"></span>
-		<span class="logo">forkThis!</span>
-		<a href="signin.html"><span class="btn btn-success loginButton">Login or Signup</span></a>
-	</div>
-	<div class="main">
-		<div class="container" style="text-align:center;margin-top:10vh;">
-			<div class="row" style="margin-bottom:5vh;">
-				<h1>Join a Session or Create a New Session</h1>
-			</div>
-			<div class="row">
-				<form style="width: 300px;display:inline-block;">
-					<input type="text" class="form-control" placeholder="Session Id" style="margin-bottom:5vh;" />
-					<div>
-						<a href="main.html">
-							<div class="btn btn-primary">Join Session</div>
-						</a>
+	<div id="wrapper">
+		<fork template="navbar"></fork>
+		<div id="page-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">Welcome to forkthis.info!</h1>
 					</div>
-					<div>or</div>
-					<div>
-						<a href="new.html">
-							<div class="btn btn-primary">Create Session</div>
-						</a>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<i class="fa fa-external-link-square fa-fw"></i> Join an Existing Session
+							</div>
+							<div class="panel-body">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Session Id" id="sessionId">
+									<span class="input-group-btn"><button class="btn btn-primary" type="button" id="join">Join Session</button></span>
+								</div>
+								<script>
+									$("#join").on("click",function(){
+										if($("#sessionId").val() !== ""){
+											window.location.href = "main.html?session=" + $("#sessionId").val();
+										}
+									});
+								</script>
+								<p class="help-block">Type in the Session Id you wish to join.  You can see all open sessions in the <a href="dashboard.html">dashboard</a></p>
+							</div>
+						</div>
 					</div>
-				</form>
+					<div class="col-lg-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<i class="fa fa-plus-square fa-fw"></i> Create a New Session
+							</div>
+							<div class="panel-body">
+								<div class="input-group">
+								<a class="btn btn-success btn-lg btn-block" href="new.html">Host a Session</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="footer"></div>
 </body>
 
 </html>
