@@ -24,6 +24,7 @@
     <script src="js/templatize.js"></script>
     <script src="js/api.js"></script>
     <link href="css/style.css" rel="stylesheet" />
+    <link href="fork.png" rel="icon"/>
 </head>
 
 <body>
@@ -53,7 +54,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Upload Starter Code (optional)</label>
-                                    <input type="file" accept=".js">
+                                    <input type="file" accept=".js" id="upload">
+                                </div>
+                                <div class="form-group" style="display:none;">
+                                    <label>Code</label>
+                                    <textarea class="form-control" id="code"></textarea>
                                 </div>
                                 <button class="btn btn-primary" id="createSession">Create Session</button>
                                 <script>
@@ -61,11 +66,29 @@
                                         FORK_THIS_API.Session.add({
                                             sessionId: $("#sessionId").val(),
                                             description: $("#sessionDescription").val(),
+                                            code: $("#code").val(),
                                             ownerId: "guest"
                                         }, function() {
-                                          window.location.href = "main.html";
+                                            window.location.href = "main.html?session=" + $("#sessionId").val();
                                         });
                                     });
+                                </script>
+                                <script>
+                                    function handleFileSelect(evt) {
+                                        var files = evt.target.files; // FileList object
+                                        // use the 1st file from the list
+                                        f = files[0];
+                                        var reader = new FileReader();
+                                        // Closure to capture the file information.
+                                        reader.onload = (function(theFile) {
+                                            return function(e) {
+                                                $('#code').val(e.target.result);
+                                            };
+                                        })(f);
+                                        // Read in the image file as a data URL.
+                                        reader.readAsText(f);
+                                    }
+                                    document.getElementById('upload').addEventListener('change', handleFileSelect, false);
                                 </script>
                                 <a href="dashboard.html"><button class="btn btn-default">Cancel</button></a>
                             </div>

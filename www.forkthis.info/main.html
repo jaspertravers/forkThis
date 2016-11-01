@@ -26,6 +26,7 @@
 	<script src="js/api.js"></script>
 	<link href="css/style.css" rel="stylesheet" />
 	<script src="js/index.js"></script>
+  <link href="fork.png" rel="icon"/>
 </head>
 
 <body>
@@ -45,7 +46,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="workspace workspace-Left">
-								<div class="codingArea" contenteditable="true">function main(){<br>console.log("Hello World!");<br>}</div>
+								<textarea class="codingArea" id="codeLeft"></textarea>
 								<div class="buttonPanel">
 									<button class="run btn btn btn-primary">Run</button>
 									<button class="clearConsole btn btn btn-secondary">Clear</button>
@@ -65,7 +66,8 @@
 							<div class="controlPanel">
 								<button class="makeInstance btn btn-primary">Make Instance</button>
 								<button class="mergeInstance btn btn-secondary" style="display:none;">Merge Instance</button>
-								<button class="deleteInstance btn btn-danger" style="display:none;">Delete Instance</button>
+								<button class="saveInstance btn btn-success" style="display:none;">Save Instance</button>
+								<button class="deleteInstance btn btn-danger" style="display:none;margin-top: 10px;">Delete Instance</button>
 							</div>
 						</div>
 					</div>
@@ -77,7 +79,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="workspace workspace-right" style="display:none;">
-								<div class="codingArea" contenteditable="true"></div>
+								<textarea class="codingArea" id="codeRight"></textarea>
 								<div class="buttonPanel">
 									<button class="run btn btn btn-primary">Run</button>
 									<button class="clearConsole btn btn btn-secondary">Clear</button>
@@ -91,6 +93,52 @@
 			</div>
 		</div>
 	</div>
+  <script>
+    var defaultCode = 'function main(){\nconsole.log("Hello World!");\n}';
+    if(FORK_THIS_API.getUrlVars().session){
+      FORK_THIS_API.Session.read(FORK_THIS_API.getUrlVars().session, function(session) {
+        var recent = localStorage.recent || "";
+        if(recent){
+          recent = recent.split(',');
+        }
+        if(recent.indexOf(session.sessionId) > -1){
+          recent.splice(recent.indexOf(session.sessionId),1);
+        }
+        recent.push(session.sessionId);
+        localStorage.setItem("recent",recent);
+        session.views = session.views || 0;
+        session.views += 1;
+        FORK_THIS_API.Session.update(session);
+        $(".makeInstance").on('click',function(){
+          session.forks = session.forks || 0;
+          session.forks += 1;
+          FORK_THIS_API.Session.update(session);
+        });
+        $(".saveInstance").on('click',function(){
+          var newSession = {
+            sessionId: session.sessionId + "-saved" + Math.floor(Math.random() * 100000).toString(16),
+            description: session.description,
+            code: $("#codeRight").val(),
+            ownerId: "guest",
+            sessionType: "private"
+          }, saved = localStorage.saved || "";
+          saved = saved.split(',');
+          saved.push(newSession.sessionId);
+          localStorage.setItem("saved",saved);
+          FORK_THIS_API.Session.add(newSession,function(){
+              window.location.href = "main.html?session=" + newSession.sessionId;
+          });
+        });
+        $('#codeLeft').val(session.code || defaultCode);
+        $("#codeLeft").on("change",function(){
+          session.code = $(this).val();
+          FORK_THIS_API.Session.update(session);
+        });
+      });
+    } else {
+      $('#codeLeft').html(defaultCode);
+    }
+  </script>
 </body>
 
 </html>

@@ -74,21 +74,23 @@ $(window).on("load",function(){
 	/* Make Instance Button creates a new editable instance */
 	$(makeInstanceButton).on("click",function(){
 		$(workspaceRight).show();
-		$(workspaceRight).find(".codingArea").html($(workspaceLeft).find(".codingArea").html());
+		$(workspaceRight).find(".codingArea").val($(workspaceLeft).find(".codingArea").val());
 		$(mergeInstanceButton).show();
 		$(deleteInstanceButton).show();
+		$(".saveInstance").show();
 		$(makeInstanceButton).hide();
-		$(workspaceRight).find(".console").html("");
+		$(workspaceRight).find(".console").val("");
 	});
 	/* Merge Instance brings back your code to the one on the left */
 	$(mergeInstanceButton).on("click",function(){
-		$(workspaceRight).find(".codingArea").html($(workspaceLeft).find(".codingArea").html());
+		$(workspaceRight).find(".codingArea").val($(workspaceLeft).find(".codingArea").val());
 	});
 	/* Delete instance removes your current code */
 	$(deleteInstanceButton).on("click",function(){
 		$(workspaceRight).hide();
 		$(mergeInstanceButton).hide();
 		$(makeInstanceButton).show();
+		$(".saveInstance").hide();
 		$(deleteInstanceButton).hide();
 	});
 	/* Parse and run code */
@@ -96,7 +98,7 @@ $(window).on("load",function(){
 		var workspace = "." + $(this).parent().parent().attr("class").replace(" ","."), code = "";
 		if(workspace && workspace.indexOf("workspace") > -1){
 			$(workspace).find(".console").attr("stop",false);
-			code = PRIVATE_FUNCTIONS.parse($(workspace).find(".codingArea").text(), workspace + " .console");
+			code = PRIVATE_FUNCTIONS.parse($(workspace).find(".codingArea").val(), workspace + " .console");
 			if(code){
 				PRIVATE_FUNCTIONS.run(code, workspace + " .console");
 			}
