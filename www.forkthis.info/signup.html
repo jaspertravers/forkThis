@@ -42,22 +42,36 @@
                            <form role="form">
                               <fieldset>
                                  <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="" id="email">
                                  </div>
                                  <div class="form-group">
-                                    <input class="form-control" placeholder="First Name" name="firstName" type="text" autofocus="">
+                                    <input class="form-control" placeholder="First Name" name="firstName" type="text" autofocus="" id="firstName">
                                  </div>
                                  <div class="form-group">
-                                    <input class="form-control" placeholder="Last Name" name="lastName" type="text" autofocus="">
+                                    <input class="form-control" placeholder="Last Name" name="lastName" type="text" autofocus="" id="lastName">
                                  </div>
                                  <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" id="password">
                                  </div>
                                  <div class="form-group">
                                     <input class="form-control" placeholder="Confirm Password" name="confirmPassword" type="password" value="">
                                  </div>
                                  <div class="form-group">
-                                    <a href="index.html" class="btn btn-lg btn-success btn-block">Sign Up</a>
+                                    <a id="signup" class="btn btn-lg btn-success btn-block">Sign Up</a>
+                                    <script>
+$("#signup").on("click", function() {
+   FORK_THIS_API.Account.signUp (
+      $("#email").val(),
+      $("#firstName").val(),
+      $("#lastName").val(),
+      $("#password").val(),
+      function() {
+         window.location.href = "dashboard.html?tab=recent";
+      });
+}
+
+
+                                    </script>
                                  </div>
                                  <div class="form-group">
                                     <label>Already have an account?</label>
