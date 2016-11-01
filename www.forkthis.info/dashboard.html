@@ -58,9 +58,9 @@
                                 <script>
                                     var tableRecent = $("#dataTables-recent tbody"),
                                         i = 0,
-                                        recent = localStorage.recent || "";
-                                    if (recent) {
-                                        recent = recent.split(',');
+                                        recent = [];
+                                    if (localStorage.recent) {
+                                        recent = localStorage.recent.split(',');
                                     }
                                     for (i = 0; i < recent.length; i++) {
                                         tableRecent.append('<tr class="' + ((i % 2 === 0) ? "odd gradeX" : "even gradeC") + '">' +

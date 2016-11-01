@@ -1,5 +1,5 @@
 /*global
-$, window, unescape
+$, window, unescape, localStorage
 */
 'use strict';
 var FORK_THIS_API = {
@@ -69,6 +69,39 @@ var FORK_THIS_API = {
         }
     },
     Account: {
-        authorization: ""
+        authorization: "",
+        signIn: function(email, password, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("account", "signin", {
+                account: {
+                    email: email,
+                    password: password
+                }
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
+        signUp: function(email, firstName, lastName, password, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("account", "signup", {
+                account: {
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password
+                }
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
+        read: function(onSuccess,onError){
+            var settings = FORK_THIS_API.Ajax.settings("account", "read", {});
+            FORK_THIS_API.Ajax.makeCall(settings, function(user){
+              FORK_THIS_API.Account.currentUser = user;
+              onSuccess(user);
+            }, onError);
+        },
+        logout: function(callback){
+          localStorage.setItem("authorization",null);
+          FORK_THIS_API.Account.currentUser = null;
+          FORK_THIS_API.Account.authorization = "";
+          callback();
+        }
     }
 };

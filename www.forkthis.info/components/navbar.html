@@ -21,14 +21,34 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <li style="display:none;" id="accountButton"><a href="account.html" ><i class="fa fa-user fa-fw"></i> User Profile</a>
                 </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                <li style="display:none;" id="settingsButton"><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
-                <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li id="signInButton"><a href="signin.html"><i class="fa fa-sign-in fa-fw"></i> Sign In</a>
+                </li>
+                <li id="signUpButton"><a href="signup.html"><i class="fa fa-user-plus fa-fw"></i> Sign Up</a>
+                </li>
+                <li style="display:none;" id="logoutButton"><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
+            <script>
+              if(localStorage.authorization && localStorage.authorization !== ""){
+                FORK_THIS_API.Account.authorization = localStorage.authorization;
+                FORK_THIS_API.Account.read(function(){
+                  $("#signInButton").hide();
+                  $("#signUpButton").hide();
+                  $("#logoutButton").show();
+                  $("#accountButton").show();
+                  $("#settingsButton").show();
+                });
+              }
+              $("#logoutButton").on("click",function(){
+                FORK_THIS_API.Account.logout(function(){
+                  location.reload();
+                });
+              });
+            </script>
         </li>
     </ul>
 </nav>
