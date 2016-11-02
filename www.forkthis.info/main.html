@@ -106,7 +106,7 @@
                     FORK_THIS_API.Session.update(session);
                 });
                 if (!FORK_THIS_API.Account.currentUser) {
-                  $(".saveInstance").addClass("disabled");
+                    $(".saveInstance").addClass("disabled");
                 }
                 $(".saveInstance").on('click', function() {
                     if (FORK_THIS_API.Account.currentUser) {
@@ -114,7 +114,7 @@
                                 sessionId: session.sessionId + "-saved" + Math.floor(Math.random() * 100000).toString(16),
                                 description: session.description,
                                 code: $("#codeRight").val(),
-                                ownerId: "guest",
+                                ownerId: FORK_THIS_API.Account.currentUser.userId,
                                 sessionType: "private"
                             },
                             saved = [];
@@ -137,8 +137,8 @@
                 if (localStorage.recent) {
                     recent = localStorage.recent.split(',');
                 }
-                if(recent.indexOf(session.sessionId) > -1){
-                  recent.splice(recent.indexOf(session.sessionId),1);
+                if (recent.indexOf(session.sessionId) > -1) {
+                    recent.splice(recent.indexOf(session.sessionId), 1);
                 }
                 recent.push(session.sessionId);
                 localStorage.setItem("recent", recent);
