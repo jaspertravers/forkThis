@@ -36,6 +36,12 @@ var FORK_THIS_API = {
     },
     Session: {
         add: function(session, onSuccess, onError) {
+          if(session.description === ""){
+            session.description = "empty";
+          }
+          if(session.code === ""){
+            session.code = "function main(){console.log('Hello World');}";
+          }
             var settings = FORK_THIS_API.Ajax.settings("session", "add", {
                 session: session
             });

@@ -58,7 +58,6 @@ $(window).on("load",function(){
 			code = code.split("console.log(").join("PRIVATE_FUNCTIONS.console.log($('" + target + "'),")
 							.split("setTimeout(").join("PRIVATE_FUNCTIONS.setTimeout($('" + target + "'),")
 							.split(";").join(";if((new Date()).getTime() > PUBLIC_VARIABLES.startTime + " + PUBLIC_VARIABLES.waitTime + "){throw('Infinite loop detected');}");
-			console.log(code);
 			return code;
 		},
 		run: function(code,target){
