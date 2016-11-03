@@ -72,7 +72,7 @@
                                         if (FORK_THIS_API.Account.currentUser) {
                                             newSession.ownerId = FORK_THIS_API.Account.currentUser.userId;
                                         }
-                                        FORK_THIS_API.Session.add(, function() {
+                                        FORK_THIS_API.Session.add(newSession, function() {
                                             window.location.href = "main.html?session=" + $("#sessionId").val();
                                         });
                                     });
