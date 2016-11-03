@@ -6,122 +6,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<title>forkThis!</title>
-	<link href="fork.png" rel="shortcut icon">
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-	<link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-	<link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-	<link href="dist/css/sb-admin-2.css" rel="stylesheet">
-	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/metisMenu/metisMenu.min.js"></script>
-	<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
-	<script src="dist/js/sb-admin-2.js"></script>
-	<script src="js/templatize.js"></script>
-	<script src="js/api.js"></script>
-	<script src="js/account.js"></script>
-	<link href="css/style.css" rel="stylesheet" />
-  <link href="fork.png" rel="icon"/>
+    <title>forkThis!</title>
+    <link href="fork.png" rel="shortcut icon">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="js/templatize.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/account.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="fork.png" rel="icon" />
 </head>
 
 <body>
-	<div id="wrapper">
-		<fork template="navbar"></fork>
-		<div id="page-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">Account Information</h1>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<i class="fa fa-external-link-square fa-fw"></i> About
-							</div>
-							<div class="panel-body">
+    <div id="wrapper">
+        <fork template="navbar"></fork>
+        <div id="page-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Account Information</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-external-link-square fa-fw"></i> About
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="comment">Bio:</label>
+                                    <textarea class="form-control" rows="5" id="bioinput" readonly="true"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <button class="btn btn-primary" type="button" id="bio">Edit</button>
+                                </div>
+                                <p class="help-block">Enter personal information about yourself you would like to share.</p>
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label for="usr">Institution:</label>
+                                    <span class="input-group">
+                                      <input type="text" class="form-control" id="instiinput" readonly="true">
+                      								<span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button" id="insti">Edit</button>
+                                      </span>
+                                    </span>
+                                </div>
+                                <script>
+                                    $("#join").on("click", function() {
+                                        if ($("#sessionId").val() !== "") {
+                                            window.location.href = "main.html?session=" + $("#sessionId").val();
+                                        }
+                                    });
+                                </script>
+
+                                <p class="help-block"> Enter institution or business you are associated with.
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-plus-square fa-fw"></i> Contact
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="usr">Email:</label>
+                                    <span class="input-group">
+                                    <input type="text" class="form-control" id="emailinput" readonly="true">
+
+                                    <span class="input-group-btn"><button class="btn btn-primary" type="button" id="email">Edit</button></span>
+                                    </span>
+                                </div>
+                                <script>
+                                    $("#join").on("click", function() {
+                                        if ($("#sessionId").val() !== "") {
+                                            window.location.href = "main.html?session=" + $("#sessionId").val();
+                                        }
+                                    });
+                                </script>
+
+                                <p class="help-block"> Enter an email we can use to contact you.
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="usr">Websites:</label>
+                                    <span class="input-group">
+                                    <input type="text" class="form-control" id="websitesinput" readonly="true">
+
+                                    <span class="input-group-btn"><button class="btn btn-primary" type="button" id="websites">Edit</button></span>
+                                    </span>
+                                </div>
 
 
-								<div class="form-group">
-  									<label for="comment">Bio:</label>
-  									<textarea class="form-control" rows="5" id="bioinput"></textarea>
-									<span class="input-group-btn"><button class="btn btn-primary" type="button" id="bio">Edit</button></span>
+                                <p class="help-block"> Enter personal websites you would like to share.
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-								</div>
-								<p class="help-block">Enter personal information about yourself you would like to share.</p>
-
-							</div>
-
-							<div class="panel-body">
-
-								<div class="form-group">
-  								<label for="usr">Institution:</label>
-  								<input type="text" class="form-control" id="instiinput">
-
-								<span class="input-group-btn"><button class="btn btn-primary" type="button" id="insti">Edit</button></span>
-								</div>
-								<script>
-									$("#join").on("click",function(){
-										if($("#sessionId").val() !== ""){
-											window.location.href = "main.html?session=" + $("#sessionId").val();
-										}
-									});
-								</script>
-
-								<p class="help-block"> Enter institution or business you are associated with.
-
-							</div>
-
-						</div>
-					</div>
-				<div class="col-lg-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<i class="fa fa-plus-square fa-fw"></i> Contact
-							</div>
-							<div class="panel-body">
-								<div class="form-group">
-  								<label for="usr">Email:</label>
-  								<input type="text" class="form-control" id="emailinput">
-
-								<span class="input-group-btn"><button class="btn btn-primary" type="button" id="email">Edit</button></span>
-								</div>
-								<script>
-									$("#join").on("click",function(){
-										if($("#sessionId").val() !== ""){
-											window.location.href = "main.html?session=" + $("#sessionId").val();
-										}
-									});
-								</script>
-
-								<p class="help-block"> Enter an email we can use to contact you.
-
-							</div>
-						<div class="panel-body">
-								<div class="form-group">
-  								<label for="usr">Websites:</label>
-  								<input type="text" class="form-control" id="websitesinput">
-
-								<span class="input-group-btn"><button class="btn btn-primary" type="button" id="websites">Edit</button></span>
-								</div>
-
-
-								<p class="help-block"> Enter personal websites you would like to share.
-
-							</div>
-						</div>
-				</div>
-			</div>
-
-
-		</div>
-	</div>
+            </div>
+        </div>
 </body>
 
 </html>

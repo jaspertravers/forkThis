@@ -125,6 +125,10 @@ var FORK_THIS_API = {
                 }
             }, onError);
         },
+        update: function(updatedUser, onSuccess, onError){
+            var settings = FORK_THIS_API.Ajax.settings("account", "update", {account:updatedUser});
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
         logout: function(callback) {
             localStorage.setItem("authorization", "");
             FORK_THIS_API.Account.currentUser = null;
