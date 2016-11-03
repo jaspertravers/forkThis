@@ -64,7 +64,7 @@ $(window).on("load", function() {
                 });
             }
         });
-
+        FORK_THIS_API.Account.authorization = localStorage.authorization || "";
         FORK_THIS_API.Account.read(function(user) {
             $("#websitesinput").val(user.account.websites || "");
             $("#emailinput").val(user.account.email || "");

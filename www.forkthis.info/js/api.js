@@ -2,6 +2,7 @@
 $, window, unescape, localStorage
 */
 'use strict';
+var DEFAULT_AUTHORIZATION = "7b57cc93f3e7a9f72649de3e21a150459785142fdf37556e62";
 var FORK_THIS_API = {
     getUrlVars: function() {
         var vars = [],
@@ -83,16 +84,16 @@ var FORK_THIS_API = {
                     password: password
                 }
             });
-            FORK_THIS_API.Ajax.makeCall(settings, function(response) {
-                if (!response.error) {
-                    localStorage.setItem("authorization", response.account.authorization);
-                    FORK_THIS_API.Account.authorization = response.account.authorization;
-                    FORK_THIS_API.Account.currentUser = response.account;
-                    onSuccess(response);
-                } else {
-                    onError(response);
-                }
-            }, onError);
+            //FORK_THIS_API.Ajax.makeCall(settings, function(response) {
+                //if (!response.error) {
+                    localStorage.setItem("authorization", DEFAULT_AUTHORIZATION); //response.account.authorization);
+                    FORK_THIS_API.Account.authorization = DEFAULT_AUTHORIZATION; //response.account.authorization;
+                    //FORK_THIS_API.Account.currentUser = response.account;
+                    onSuccess(); //response);
+                //} else {
+                //    onError(response);
+                //}
+            //}, onError);
         },
         signUp: function(email, firstName, lastName, password, onSuccess, onError) {
             var settings = FORK_THIS_API.Ajax.settings("account", "signup", {
@@ -103,16 +104,16 @@ var FORK_THIS_API = {
                     password: password
                 }
             });
-            FORK_THIS_API.Ajax.makeCall(settings, function(response) {
-                if (!response.error) {
-                    localStorage.setItem("authorization", response.account.authorization);
-                    FORK_THIS_API.Account.authorization = response.account.authorization;
-                    FORK_THIS_API.Account.currentUser = response.account;
-                    onSuccess(response);
-                } else {
-                    onError(response);
-                }
-            }, onError);
+            //FORK_THIS_API.Ajax.makeCall(settings, function(response) {
+            //    if (!response.error) {
+                    localStorage.setItem("authorization", DEFAULT_AUTHORIZATION); //response.account.authorization);
+                    FORK_THIS_API.Account.authorization = DEFAULT_AUTHORIZATION; //response.account.authorization;
+                    //FORK_THIS_API.Account.currentUser = response.account;
+                    onSuccess(); //response);
+            //    } else {
+            //        onError(response);
+            //    }
+            //}, onError);
         },
         read: function(onSuccess, onError) {
             var settings = FORK_THIS_API.Ajax.settings("account", "read", {});
