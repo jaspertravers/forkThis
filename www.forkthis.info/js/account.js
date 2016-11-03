@@ -18,7 +18,7 @@ $(window).on("load",function(){
 	$(document).ready(function() {
 	 $('#bio').on('click', function() {
 	  
-	  if(document.getElementById('bioinput').readOnly = true){
+	  if(document.getElementById('bioinput').readOnly == true){
 		document.getElementById('bioinput').readOnly = false;
 	    document.getElementById("bio").innerHTML = "Save";
 	  }
@@ -28,6 +28,49 @@ $(window).on("load",function(){
 	  document.getElementById("bio").innerHTML = "Edit";
       }
 	 });
+	
+	 $('#insti').on('click', function() {
+	  
+	  if(document.getElementById('instiinput').readOnly == true){
+		document.getElementById('instiinput').readOnly = false;
+	    document.getElementById("insti").innerHTML = "Save";
+	  }
+	  else{
+	  
+	  document.getElementById('instiinput').readOnly = true;
+	  document.getElementById("insti").innerHTML = "Edit";
+      }
+	 });
+	
+	 $('#email').on('click', function() {
+	  
+	  if(document.getElementById('emailinput').readOnly == true){
+		document.getElementById('emailinput').readOnly = false;
+	    document.getElementById("email").innerHTML = "Save";
+	  }
+	  else{
+	  
+	  document.getElementById('emailinput').readOnly = true;
+	  document.getElementById("email").innerHTML = "Edit";
+      }
+	 });
+	
+	 $('#websites').on('click', function() {
+	  
+	  if(document.getElementById('websitesinput').readOnly == true){
+		document.getElementById('websitesinput').readOnly = false;
+	    document.getElementById("websites").innerHTML = "Save";
+	  }
+	  else{
+	  
+	  document.getElementById('websitesinput').readOnly = true;
+	  document.getElementById("websites").innerHTML = "Edit";
+      }
+	 });
+	
+
+
+
 	});
 	
 
