@@ -36,6 +36,11 @@ var FORK_THIS_API = {
         }
     },
     Session: {
+        
+        featuredInstances:function(onSuccess, onError){
+            var settings = FORK_THIS_API.Ajax.settings("session2", "featuredInstances", {});
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);    
+        },
         add: function(session, onSuccess, onError) {
           if(session.description === ""){
             session.description = "empty";

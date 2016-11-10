@@ -21,11 +21,22 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 
+
+.titledescription{
+
+  font-size: 11px;
+  padding-bottom: 50px;
+ 
+
+}
 .clearfix{
   padding-bottom: 100px;
   padding-right:100px;
 }
 
+.title{
+  margin-button:-50px;
+}
 
 /* Custom page footer */
 .footer {
@@ -45,12 +56,17 @@ body {
   
  
 }
+#hostbutton{
+  margin-top: -12px;
+}
+
 .join-session-heading
 {
-  margin-bottom: -14px;
+  
   margin-left: 5px;
   text-align: left;
-  font-size: smaller;
+  font-size: 14px !important;
+  padding-top: 20px !important;
 
 }
 
