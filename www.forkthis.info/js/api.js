@@ -2,7 +2,6 @@
 $, window, unescape, localStorage
 */
 'use strict';
-var DEFAULT_AUTHORIZATION = "7b57cc93f3e7a9f72649de3e21a150459785142fdf37556e62";
 var FORK_THIS_API = {
     getUrlVars: function() {
         var vars = [],
@@ -32,18 +31,50 @@ var FORK_THIS_API = {
             };
         },
         makeCall: function(settings, onSuccess, onError) {
-            $.ajax(settings).done(onSuccess).fail(onError);
+            $.ajax(settings).done(function(response) {
+                if (onSuccess) {
+                    onSuccess(response);
+                }
+            }).fail(function(response) {
+                onError(response);
+            });
         }
     },
     Session: {
+        featuredInstances: function(onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("session2", "featuredInstances", {});
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
         add: function(session, onSuccess, onError) {
-          if(session.description === ""){
-            session.description = "empty";
-          }
-          if(session.code === ""){
-            session.code = "function main(){console.log('Hello World');}";
-          }
+            if (session.description === "") {
+                session.description = "empty";
+            }
+            session.file = session.file || {
+                name: "index",
+                data: "function main(){console.log('Hello World');}",
+                extension: "js"
+            };
             var settings = FORK_THIS_API.Ajax.settings("session", "add", {
+                session: session
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
+        remove: function(session, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("session", "remove", {
+                session: session
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
+        incViews: function(session, onSuccess, onError) {
+            session.views = (session.views || 0) + 1;
+            var settings = FORK_THIS_API.Ajax.settings("session", "update", {
+                session: session
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
+        incForks: function(session, onSuccess, onError) {
+            session.forks = (session.forks || 0) + 1;
+            var settings = FORK_THIS_API.Ajax.settings("session", "update", {
                 session: session
             });
             FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
@@ -58,16 +89,42 @@ var FORK_THIS_API = {
             var settings = FORK_THIS_API.Ajax.settings("session", "list", {});
             FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
         },
-        owned: function(ownerId, onSuccess, onError) {
-            var settings = FORK_THIS_API.Ajax.settings("session", "owned", {
+        read: function(sessionId, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("session", "read", {
                 session: {
-                    ownerId: ownerId || "guest"
+                    sessionId: sessionId
+                }
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        }
+    },
+    File: {
+        add: function(file, sessionId, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("session", "addFile", {
+                session: {
+                    sessionId: sessionId,
+                    file: file
                 }
             });
             FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
         },
-        read: function(sessionId, onSuccess, onError) {
-            var settings = FORK_THIS_API.Ajax.settings("session", "read", {
+        remove: function(file, sessionId, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("session", "removeFile", {
+                session: {
+                    sessionId: sessionId,
+                    file: file
+                }
+            });
+            FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
+        },
+        update: function(file, sessionId, onSuccess, onError) {
+            var add = function() {
+                FORK_THIS_API.File.add(file, sessionId, onSuccess, onError);
+            };
+            FORK_THIS_API.File.remove(file, sessionId, add, add);
+        },
+        list: function(sessionId, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("session", "listFiles", {
                 session: {
                     sessionId: sessionId
                 }
@@ -84,16 +141,16 @@ var FORK_THIS_API = {
                     password: password
                 }
             });
-            //FORK_THIS_API.Ajax.makeCall(settings, function(response) {
-                //if (!response.error) {
-                    localStorage.setItem("authorization", DEFAULT_AUTHORIZATION); //response.account.authorization);
-                    FORK_THIS_API.Account.authorization = DEFAULT_AUTHORIZATION; //response.account.authorization;
-                    //FORK_THIS_API.Account.currentUser = response.account;
-                    onSuccess(); //response);
-                //} else {
-                //    onError(response);
-                //}
-            //}, onError);
+            FORK_THIS_API.Ajax.makeCall(settings, function(response) {
+                if (!response.error) {
+                    localStorage.setItem("authorization", response.account.authorization);
+                    FORK_THIS_API.Account.authorization = response.account.authorization;
+                    FORK_THIS_API.Account.currentUser = response.account;
+                    onSuccess(response);
+                } else {
+                    onError(response);
+                }
+            }, onError);
         },
         signUp: function(email, firstName, lastName, password, onSuccess, onError) {
             var settings = FORK_THIS_API.Ajax.settings("account", "signup", {
@@ -104,16 +161,16 @@ var FORK_THIS_API = {
                     password: password
                 }
             });
-            //FORK_THIS_API.Ajax.makeCall(settings, function(response) {
-            //    if (!response.error) {
-                    localStorage.setItem("authorization", DEFAULT_AUTHORIZATION); //response.account.authorization);
-                    FORK_THIS_API.Account.authorization = DEFAULT_AUTHORIZATION; //response.account.authorization;
-                    //FORK_THIS_API.Account.currentUser = response.account;
-                    onSuccess(); //response);
-            //    } else {
-            //        onError(response);
-            //    }
-            //}, onError);
+            FORK_THIS_API.Ajax.makeCall(settings, function(response) {
+                if (!response.error) {
+                    localStorage.setItem("authorization", response.account.authorization);
+                    FORK_THIS_API.Account.authorization = response.account.authorization;
+                    FORK_THIS_API.Account.currentUser = response.account;
+                    onSuccess(response);
+                } else {
+                    onError(response);
+                }
+            }, onError);
         },
         read: function(onSuccess, onError) {
             var settings = FORK_THIS_API.Ajax.settings("account", "read", {});
@@ -126,8 +183,10 @@ var FORK_THIS_API = {
                 }
             }, onError);
         },
-        update: function(updatedUser, onSuccess, onError){
-            var settings = FORK_THIS_API.Ajax.settings("account", "update", {account:updatedUser});
+        update: function(updatedUser, onSuccess, onError) {
+            var settings = FORK_THIS_API.Ajax.settings("account", "update", {
+                account: updatedUser
+            });
             FORK_THIS_API.Ajax.makeCall(settings, onSuccess, onError);
         },
         logout: function(callback) {

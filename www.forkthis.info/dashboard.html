@@ -148,26 +148,29 @@
                                     </tbody>
                                 </table>
                                 <script>
-                                  FORK_THIS_API.Account.read(function(response){
-                                    if(response.account && response.account.saved){
-                                      $("#savedTabButton").show();
-                                      var tableRecent = $("#dataTables-saved tbody"),
-                                          i = 0,
-                                          saved = response.account.saved;
-                                      for (i = 0; i < saved.length; i++) {
-                                          tableRecent.append('<tr class="' + ((i % 2 === 0) ? "odd gradeX" : "even gradeC") + '">' +
-                                              '<td>' + saved[i] + '</td>' +
-                                              '</tr>');
-                                      }
-                                      $('#dataTables-saved tbody tr').on("click", function() {
-                                          var sessionName = $($(this).find("td")[0]).text();
-                                          window.location.href = "main.html?session=" + sessionName;
-                                      });
+                                    if (localStorage.authorization && localStorage.authorization !== "") {
+                                        FORK_THIS_API.Account.authorization = localStorage.authorization;
+                                        FORK_THIS_API.Account.read(function(response) {
+                                            if (response.account && response.account.saved) {
+                                                $("#savedTabButton").show();
+                                                var tableRecent = $("#dataTables-saved tbody"),
+                                                    i = 0,
+                                                    saved = response.account.saved;
+                                                for (i = 0; i < saved.length; i++) {
+                                                    tableRecent.append('<tr class="' + ((i % 2 === 0) ? "odd gradeX" : "even gradeC") + '">' +
+                                                        '<td>' + saved[i] + '</td>' +
+                                                        '</tr>');
+                                                }
+                                                $('#dataTables-saved tbody tr').on("click", function() {
+                                                    var sessionName = $($(this).find("td")[0]).text();
+                                                    window.location.href = "main.html?session=" + sessionName;
+                                                });
+                                            }
+                                            $('#dataTables-saved').DataTable({
+                                                responsive: true
+                                            });
+                                        });
                                     }
-                                    $('#dataTables-saved').DataTable({
-                                        responsive: true
-                                    });
-                                  });
                                 </script>
                                 <div class="well">
                                     <a class="btn btn-default btn-lg btn-block" href="new.html">Host a Session</a>

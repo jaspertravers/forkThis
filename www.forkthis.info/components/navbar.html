@@ -4,6 +4,13 @@
     </div>
     <ul class="nav navbar-top-links navbar-right" style="float:right;">
         <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="share" style="display:none;">
+                <i class="fa fa-share-alt fa-fw"></i> <i class="fa fa-caret-down" style="visibility:hidden;"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+            </ul>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-dashboard fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
@@ -12,7 +19,7 @@
                 </li>
                 <li><a href="dashboard.html?tab=hosted"><i class="fa fa-cloud fa-fw"></i> Hosted</a>
                 </li>
-                <li><a href="dashboard.html?tab=saved"><i class="fa fa-floppy-o fa-fw"></i> Saved</a>
+                <li><a href="dashboard.html?tab=saved" style="display:none;" id="savedButton"><i class="fa fa-floppy-o fa-fw"></i> Saved</a>
                 </li>
             </ul>
         </li>
@@ -21,7 +28,7 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li style="display:none;" id="accountButton"><a href="account.html" ><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <li style="display:none;" id="accountButton"><a href="account.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
                 </li>
                 <li style="display:none;" id="settingsButton"><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
@@ -33,21 +40,24 @@
                 </li>
             </ul>
             <script>
-              if(localStorage.authorization && localStorage.authorization !== ""){
-                FORK_THIS_API.Account.authorization = localStorage.authorization;
-                FORK_THIS_API.Account.read(function(){
-                  $("#signInButton").hide();
-                  $("#signUpButton").hide();
-                  $("#logoutButton").show();
-                  $("#accountButton").show();
-                  //$("#settingsButton").show();
+                if (localStorage.authorization && localStorage.authorization !== "") {
+                    FORK_THIS_API.Account.authorization = localStorage.authorization;
+                    FORK_THIS_API.Account.read(function(response) {
+                        $("#signInButton").hide();
+                        $("#signUpButton").hide();
+                        $("#logoutButton").show();
+                        $("#accountButton").show();
+                        if (response.account && response.account.saved) {
+                            $("#savedButton").show();
+                        }
+                        //$("#settingsButton").show();
+                    });
+                }
+                $("#logoutButton").on("click", function() {
+                    FORK_THIS_API.Account.logout(function() {
+                        location.reload();
+                    });
                 });
-              }
-              $("#logoutButton").on("click",function(){
-                FORK_THIS_API.Account.logout(function(){
-                  location.reload();
-                });
-              });
             </script>
         </li>
     </ul>
