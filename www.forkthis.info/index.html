@@ -5,76 +5,114 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A collaborative computer programming application to optimize the coding learning process. ">
-    <meta name="keywords" content = "Coding, Learning, collaboration, online learning, programming, computer learning"
-    <meta name="author" content="John,Alex,Jasper ">
-	<title>forkThis!</title>
-	<link href="fork.png" rel="shortcut icon">
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-	<link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-	<link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-	<link href="dist/css/sb-admin-2.css" rel="stylesheet">
-	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/metisMenu/metisMenu.min.js"></script>
-	<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
-	<script src="dist/js/sb-admin-2.js"></script>
-	<script src="js/templatize.js"></script>
-	<script src="js/api.js"></script>
-	<link href="css/style.css" rel="stylesheet" />
-  <link href="fork.png" rel="icon"/>
+    <meta name="keywords" content="Coding, Learning, collaboration, online learning, programming, computer learning" <meta name="author" content="John,Alex,Jasper ">
+
+    <link href="fork.png" rel="shortcut icon">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="js/templatize.js"></script>
+    <script src="js/api.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="fork.png" rel="icon" />
+
+    <title>forkThis!</title>
+
 </head>
 
 <body>
-	<div id="wrapper">
-		<fork template="navbar"></fork>
-		<div id="page-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">Welcome to forkthis.info!</h1>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<i class="fa fa-external-link-square fa-fw"></i> Join an Existing Session
-							</div>
-							<div class="panel-body">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Session Id" id="sessionId">
-									<span class="input-group-btn"><button class="btn btn-primary" type="button" id="join">Join Session</button></span>
-								</div>
-								<script>
-									$("#join").on("click",function(){
-										if($("#sessionId").val() !== ""){
-											window.location.href = "main.html?session=" + $("#sessionId").val();
-										}
-									});
-								</script>
-								<p class="help-block">Type in the Session Id you wish to join.  You can see all open sessions in the <a href="dashboard.html">dashboard</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<i class="fa fa-plus-square fa-fw"></i> Create a New Session
-							</div>
-							<div class="panel-body">
-								<div class="input-group">
-								<a class="btn btn-success btn-lg btn-block" href="new.html">Host a Session</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div id="wrapper" style="position: fixed;top: 0;">
+        <fork template="navbar"></fork>
+    </div>
+    <div class="clearfix">
+        <nav>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="title">
+          ForkThis!
+        </h1>
+            <span class="titledescription">
+          Collaborative coding for students, professionals, and hobbyists
+        </span>
+            <div class="jumbopanel">
+                <p class="join-session-heading"> Join an existing session</p>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Session Id" id="sessionId">
+                    <span class="input-group-btn"><button class="btn btn-primary" type="button" id="join">Join</button></span>
+                </div>
+                <script>
+                    $("#sessionId").on('click', function() {
+                        $(".join-session-heading").text("Join an existing session");
+                    });
+                    $("#join").on("click", function() {
+                        if ($("#sessionId").val() !== "") {
+                            FORK_THIS_API.Session.read($("#sessionId").val(), function(session) {
+                                if (session.sessionId) {
+                                    window.location.href = "main.html?session=" + $("#sessionId").val();
+                                } else {
+                                    $(".join-session-heading").text("Invalid Session Id");
+                                }
+                            });
+                        }
+                    });
+                </script>
+                <p class="or"> Or </p>
+                <p><a class="btn btn-lg btn-success" href="new.html" role="button" id="hostbutton">Host Your Own Session</a></p>
+            </div>
+        </div>
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Featured Instances</h4>
+                <div id="featured"></div>
+                <script>
+                    FORK_THIS_API.Session.featuredInstances(function(response) {
+                        var i = 0;
+                        for (i = 0; i < response.length; i++) {
+                            $("#featured").append("<div><a style='color:black' href='main.html?session=" + response[i] + "'>" + response[i] + "</a></div>")
+                        }
+                    });
+                </script>
+            </div>
+            <div class="col-lg-6">
+                <h4>Recent Instances</h4>
+                <div id="recent"></div>
+                <script>
+                    var i = 0,
+                        recent = [],
+                        cnt = 0;
+                    if (localStorage.recent) {
+                        recent = localStorage.recent.split(',');
+                    };
+                    for (i = 0; i < recent.length && cnt < 5; i++) {
+                        if (recent[i] !== '') {
+                            cnt++;
+                            $("#recent").append("<div><a style='color:black' href='main.html?session=" + recent[i] + "'>" + recent[i] + "</a></div>")
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2016 ForkThis, Inc.</p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>

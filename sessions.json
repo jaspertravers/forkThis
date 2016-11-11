@@ -1,0 +1,103 @@
+{  
+   "sessions":[  
+      {  
+         "sessionId":"123",
+         "views":0,
+         "ownerId":"guest",
+         "sessionType":"public",
+         "createDate":"11/10/2016",
+         "code":"function main(){console.log('Hello World');}",
+         "active":true,
+         "description":"empty",
+         "forks":0
+      },
+      {  
+         "sessionId":"Alex's Session",
+         "views":10,
+         "ownerId":"mbr65n",
+         "active":true,
+         "code":"function main(){console.log('Hello World');}",
+         "createDate":"11/4/2016",
+         "sessionType":"public",
+         "forks":1,
+         "description":"Alex testing hosting out"
+      },
+      {  
+         "sessionId":"COGS 120",
+         "views":20,
+         "code":"function main(){\nconsole.log(\"Welcome to COGS 120!\");\n}",
+         "sessionType":"public",
+         "createDate":"10/30/2016",
+         "active":true,
+         "ownerId":"guest",
+         "description":"This is the first COGS 120 session",
+         "forks":5
+      },
+      {  
+         "sessionId":"HelloWorld",
+         "views":80,
+         "code":"var a = 0;\n\nfunction main(){\n  a++;\n  console.log(\"Hello World! \" + a);\n  if(!a || a < 10){\n    a++;\n    setTimeout(main,1000);\n  }\n}\n",
+         "sessionType":"public",
+         "createDate":"10/31/2016",
+         "active":true,
+         "ownerId":"guest",
+         "description":"Example Session",
+         "forks":14
+      },
+      {  
+         "sessionId":"John's Session",
+         "views":172,
+         "code":"function main(){\n\tconsole.log('Hello World!');\n  \n}",
+         "sessionType":"public",
+         "createDate":"10/31/2016",
+         "active":true,
+         "ownerId":"guest",
+         "description":"Test session",
+         "forks":10
+      },
+      {  
+         "sessionId":"Test Session",
+         "views":1,
+         "ownerId":"guest",
+         "active":true,
+         "code":"function main(){console.log('Hello World');}",
+         "createDate":"11/8/2016",
+         "sessionType":"public",
+         "forks":0,
+         "description":"empty"
+      },
+      {  
+         "sessionId":"alex",
+         "views":4,
+         "ownerId":"mbr65n",
+         "active":true,
+         "code":"function main(){console.log('Hello World');}",
+         "createDate":"11/4/2016",
+         "sessionType":"public",
+         "forks":0,
+         "description":"empty"
+      },
+      {  
+         "sessionId":"test456",
+         "views":17,
+         "code":"function main(){\nconsole.log(\"Hello World!\");\n\n}",
+         "active":true,
+         "createDate":"10/30/2016",
+         "ownerId":"abc123",
+         "sessionType":"public",
+         "forks":1,
+         "description":"test session"
+      },
+      {  
+         "sessionId":"testSession",
+         "views":1,
+         "ownerId":"nhhkzl",
+         "active":true,
+         "code":"function main(){\n  console.log('Hello World');\n  console.log('test');\n  console.log('Hi there!');\n  console.log('test2');\n}",
+         "createDate":"11/3/2016",
+         "sessionType":"public",
+         "forks":0,
+         "description":"empty"
+      }
+   ]
+}
