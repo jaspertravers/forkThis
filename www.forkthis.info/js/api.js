@@ -146,6 +146,7 @@ var FORK_THIS_API = {
                     localStorage.setItem("authorization", response.account.authorization);
                     FORK_THIS_API.Account.authorization = response.account.authorization;
                     FORK_THIS_API.Account.currentUser = response.account;
+                    localStorage.setItem("user",JSON.stringify(FORK_THIS_API.Account.currentUser));
                     onSuccess(response);
                 } else {
                     onError(response);
@@ -166,6 +167,7 @@ var FORK_THIS_API = {
                     localStorage.setItem("authorization", response.account.authorization);
                     FORK_THIS_API.Account.authorization = response.account.authorization;
                     FORK_THIS_API.Account.currentUser = response.account;
+                    localStorage.setItem("user",JSON.stringify(FORK_THIS_API.Account.currentUser));
                     onSuccess(response);
                 } else {
                     onError(response);
@@ -177,6 +179,7 @@ var FORK_THIS_API = {
             FORK_THIS_API.Ajax.makeCall(settings, function(response) {
                 if (!response.error) {
                     FORK_THIS_API.Account.currentUser = response.account;
+                    localStorage.setItem("user",JSON.stringify(FORK_THIS_API.Account.currentUser));
                     onSuccess(response);
                 } else {
                     onError(response);
@@ -193,6 +196,7 @@ var FORK_THIS_API = {
             localStorage.setItem("authorization", "");
             FORK_THIS_API.Account.currentUser = null;
             FORK_THIS_API.Account.authorization = "";
+            localStorage.setItem("user","");
             callback();
         }
     }

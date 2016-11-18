@@ -60,7 +60,7 @@
             FORK_THIS_API.Account.authorization = localStorage.authorization || "";
             FORK_THIS_API.Account.currentUser = FORK_THIS_API.Account.currentUser || JSON.parse(localStorage.user || "{}");
             $("head").append('<meta property="og:title" content="' +  + '" />');
-            var url = "http://forkthis-cogs120.herokuapp.com/?session=" + session;
+            var url = "http://forkthis-cogs120.herokuapp.com/verB/?session=" + session;
             if (FORK_THIS_API.Account.currentUser) {
                 url += "&userId=" + FORK_THIS_API.Account.currentUser.userId + "&authorization=" + FORK_THIS_API.Account.authorization;
             }
